@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#tr{
+		background-color:#ccc;
+		border:1px solid blue;
+	}
+
+
+	</style>
+	<script>
+	  
+		var timer;
+		
+    	var ctr;
+	window.onload=function(){
+
+		//  var btn1=document.getElementsByClassName("btn1");
+		// var btn2=document.getElementsByClassName("btn2");
+		var tr=document.getElementById("tr");
+		tr.height=100;
+		tr.width=900;
+		 ctr=tr.getContext("2d");
+		fn1();
+	// 	btn1.onclick=function(){
+		
+	// 	timer=setInterval(fn1, 10);
+		
+
+	// 	}
+
+	// btn2.onclick=function(){
+	// clearInterval(timer);
+	// }
+
+
+	
+		
+}
+	function doStart(){
+		timer=setInterval(fn1, 10);
+	}
+	function doEnd(){
+		clearInterval(timer);
+	}
+	var step=20;
+		var n=1;
+		function fn1(){
+			ctr.clearRect(0,0,100,900)	
+			step+=n;
+			ctr.beginPath();
+			ctr.arc(90,step,10,0,2*Math.PI);
+			 ctr.fillStyle="red";
+			 ctr.closePath()
+			ctr.fill();
+			if(step==100||step==0){
+				n=n*(-1);
+				
+				}
+		
+	}
+
+
+	</script>
+
+</head>
+<body>
+	<canvas id="tr">
+
+	</canvas>
+	<hr>
+	<div>
+	<button class="btn1" value="开始" onclick="doStart()">开始</button>
+	<button class="btn2" value="停止" onclick="doEnd()">停止</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			border:1px solid black;
+		}
+	</style>
+	<script>
+		
+		//如果知道夹角度数，圆周的半径，该点在圆周上的坐标
+		// x=cos(弧度)*r+r   cos((n/180)*π)*r+r
+		// y=sin(弧度)*r+r   sin((n/180)*π)*r+r
+		var r=250;
+		var radio=0.4;
+		window.onload=function(){
+			var c1=document.getElementById("c1");
+			var ctx=c1.getContext("2d");
+			ctx.beginPath();
+			for(var i=0;i<10;i++){
+				ctx.lineTo(Math.cos(((i*36)/180)*Math.PI)*r*radio+r,Math.sin(((i*36)/180)*Math.PI)*r*radio+r);
+			}
+			
+			ctx.closePath();
+			ctx.stroke();
+		}
+
+
+		var r=250;
+		var radio=0.4;
+		window.onload=function(){
+			var c1=document.getElementById("c1");
+			var ctr=c1.getContext("2d");
+			ctr.beginPath();
+
+			for(var i=0;i<10;i++){
+				radio=((i%2!=0)?1:0.4);
+
+					ctr.lineTo(Math.cos(((18+(i*36))/180)*Math.PI)*r*radio+r,Math.sin(((18+(i*36))/180)*Math.PI)*r*radio+r)
+			}
+			
+			ctr.closePath();
+			ctr.stroke()
+
+		}
+	</script>
+</head>
+<body>
+	<canvas id="c1" width="500px" height="500px"></canvas>
+</body>
+</html>

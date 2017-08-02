@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			border:1px solid black;
+		}
+	</style>
+	<script>
+	var ctr;
+		window.onload=function(){
+			var c1=document.getElementById("c1");
+			 ctr=c1.getContext("2d");
+			 ctr.font="20px Arial";
+			}
+
+			function fn1(){
+				ctr.fillStyle="blue";
+			ctr.beginPath();
+			ctr.beginPath();
+			ctr.moveTo(50,50);
+			ctr.lineTo(50,450);
+			ctr.lineTo(890,450);
+			ctr.stroke();
+			ctr.beginPath();
+			//三角
+			ctr.moveTo(50,45);
+			
+			ctr.lineTo(55,50);
+			ctr.lineTo(45,50);
+			ctr.lineTo(50,45);
+			ctr.stroke();
+			ctr.fill();
+			//三角
+			ctr.beginPath();
+			ctr.moveTo(890,445);
+			
+			ctr.lineTo(895,450);
+			ctr.lineTo(890,455);
+			ctr.lineTo(890,445);
+			ctr.stroke();
+			ctr.fill();
+			ctr.strokeText("A产品",100,470)
+			ctr.beginPath();
+			ctr.strokeText("B产品",250,470)
+			ctr.beginPath();
+			ctr.strokeText("C产品",400,470)
+			
+			ctr.beginPath();
+			ctr.strokeText("D产品",550,470)
+			ctr.beginPath();
+			ctr.strokeText("E产品",700,470)
+			}
+			function doStart(){
+				ctr.clearRect(0,0,1000,500)
+			fn1();
+			ctr.fillStyle="blue";
+			ctr.font="20px Arial";
+				var max=0;
+				var input=document.getElementsByTagName("input");
+				for(var i=0;i<input.length;i++){	
+		    		if(input[i].value*1>max){
+						max=input[i].value*1;
+					}		
+				}
+				
+				
+				for(var i=0;i<4;i++){
+					
+					ctr.moveTo(50,65+95*i);	
+					ctr.lineTo(890,65+95*i);
+					ctr.stroke();
+					ctr.beginPath();
+					var str=Math.round((max/4)*(4-i))
+			    ctr.strokeText(str,30,65+95*i,20)
+
+				}
+				ctr.beginPath();
+				
+				ctr.font="20px Arial";
+				for(var i=0;i<input.length;i++){
+					ctr.beginPath();
+					input[i].value*1
+					var ln=((input[i].value*1)/(max))*(500-50-65)
+					ctr.strokeRect(100+i*150,500-50-ln,40,ln);
+					ctr.fillStyle="blue";
+					
+					ctr.fillRect(100+i*150,500-50-ln,40,ln);
+			
+				}
+
+			}
+			
+
+			
+		
+	</script>
+</head>
+<body>
+	<div>产品A: 	<input type="text" value="100" id="input1">产品B: 	<input type="text" value="80" id="input2">产品C: 	<input type="text" value="100" id="input3">产品D: 	<input type="text" value="100" id="input4">产品E: 	<input type="text" value="80" id="input5">
+	<input type="button" value="绘图" onclick="doStart()"></div>
+	<canvas id="c1" width="1000px" height="500px"></canvas>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+	<title>Document</title>
+<!-- 	<meta name="viewport" content="device-width,initial-scale=1.0"> -->
+	<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+	<meta name="viewport" content="device-width,initial-scale=1.0">
+	<style>
+	*{
+			padding:0;
+			margin:0;
+		}
+		#btn1{
+			height: 200px;
+			width: 100%;
+			position:fixed;
+		}
+		#btn2{
+			height:200px;
+			width: 100%;
+			background:orange;
+		}
+		#c1{
+			position:absolute;
+			left:0;
+			top:0;
+		}
+		#show{
+			font-size:50px;
+			font-weight:bold;
+			vertical-align:center;
+			text-align:center;
+			line-height:200px;
+			color:black;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var c1=document.getElementById("c1");
+			var show=document.getElementById("show");
+			var ctr=c1.getContext("2d");
+			var w=window.innerWidth;
+			c1.width=w;
+			c1.height=200;
+			ctr.fillStyle="#ccc";
+			ctr.fillRect(0,0,w,200);
+			c1.addEventListener("touchstart",fn1);
+			c1.addEventListener("touchmove",fn2);
+
+			function fn1(){
+			ctr.beginPath();
+			ctr.lineCap="round";
+			ctr.lineWidth=40;
+			ctr.lineJoin="round"
+			ctr.globalCompositeOperation="destination-out"
+
+		}
+		function fn2(e){//事件对象
+			var x=e.touches[0].clientX;
+			var y=e.touches[0].clientY;
+			ctr.lineTo(x,y)
+			ctr.stroke()
+		}
+		var arr=["一等奖","二等奖","三等奖","谢谢惠顾"]
+		show.innerHTML=arr[parseInt(Math.random()*4)];
+
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<div id="btn1">
+		<div id="btn2">
+			<p id="show">123</p>
+		</div>
+		<canvas id="c1">
+			
+		</canvas>
+	</div>
+</body>
+</html>

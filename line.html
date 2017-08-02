@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			border:1px solid black;
+		}
+	</style>
+	<script>
+	var ctr;
+		window.onload=function(){
+			var c1=document.getElementById("c1");
+			 ctr=c1.getContext("2d");
+			 ctr.font="20px Arial";
+			 doStart()
+			}
+
+			function fn1(){
+				ctr.fillStyle="blue";
+			ctr.beginPath();
+			ctr.beginPath();
+			ctr.moveTo(50,50);
+			ctr.lineTo(50,450);
+			ctr.lineTo(890,450);
+			ctr.stroke();
+			ctr.beginPath();
+			//三角
+			ctr.moveTo(50,45);
+			
+			ctr.lineTo(55,50);
+			ctr.lineTo(45,50);
+			ctr.lineTo(50,45);
+			ctr.stroke();
+			ctr.fill();
+			//三角
+			ctr.beginPath();
+			ctr.moveTo(890,445);
+			
+			ctr.lineTo(895,450);
+			ctr.lineTo(890,455);
+			ctr.lineTo(890,445);
+			ctr.stroke();
+			ctr.fill();
+			}
+			var tr;
+			var tm;
+			function doStart(){
+				ctr.clearRect(0,0,1000,500)
+			fn1();
+			ctr.fillStyle="blue";
+			ctr.font="20px Arial";
+				var max=0;
+				var input=document.getElementsByName("proudct");
+				
+				for(var i=0;i<input.length;i++){
+				 tr=100+i*150	
+					ctr.strokeText(input[i].getAttribute("title"),tr,470)
+		    		if(input[i].value*1>max){
+						max=input[i].value*1;
+
+					}		
+				}
+				
+				
+				for(var i=0;i<4;i++){
+					
+					ctr.moveTo(50,65+95*i);	
+					ctr.lineTo(890,65+95*i);
+					ctr.stroke();
+					ctr.beginPath();
+					var str=Math.round((max/4)*(4-i))
+			    ctr.strokeText(str,25,65+95*i,20)
+
+				}
+					ctr.beginPath();
+				ctr.font="20px Arial";
+				ctr.moveTo(100,450-((input[0].value*1)/(max))*(500-50-65));
+				for(var i=0;i<input.length;i++){
+				
+					 tr=100+i*150;
+					 tm=450/max
+					 var ln=450-((input[i].value*1)/(max))*(500-50-65)
+					ctr.lineTo(tr,ln)
+					ctr.stroke();
+					ctr.beginPath();
+					ctr.fillStyle="pink";
+					ctr.arc(tr,ln,5,0,2*Math.PI)
+					ctr.fill()
+					
+			
+				}
+
+			}
+			
+
+			
+		
+	</script>
+</head>
+<body>
+	<div>一月: 	<input type="text" title="一月" name="proudct" value="100" id="input1">二月: 	<input type="text"  name="proudct" title="二月" value="80" id="input2">三月: 	<input type="text"   name="proudct" title="三月" value="100" id="input3">四月: 	<input type="text"  name="proudct" title="四月" value="100" id="input4">五月: 	<input type="text"  name="proudct" title="五月" value="80" id="input5">
+	<input type="button" value="绘图" onclick="doStart()"></div>
+	<canvas id="c1" width="1000px" height="500px"></canvas>
+</body>
+</html>

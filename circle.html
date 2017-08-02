@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#c1{
+		border:1px solid #ccc;
+	}
+		</style>
+</head>
+<script>
+var ctr;
+var mn=["blue","yellow","red","#ccc"]
+window.onload=function(){
+	 ctr=document.getElementById("c1").getContext("2d");
+	doStart()
+}
+	
+function doStart(){
+	ctr.clearRect(0,0,1000,500)
+	var array=document.getElementsByName("product");//数组
+	var total=0;
+	var r=200;
+	for (var i =0; i <array.length;i++) {
+		total+=parseInt(array[i].value)
+	}
+		if(total>100||total<100){
+			alert("输入有误");
+			return;
+		}
+
+		var temp=0;
+	for (var i =0; i <array.length; i++) {
+		var s=temp;
+		var e=s+(parseInt(array[i].value)/100)*2*Math.PI;
+		  var texp=s+(parseInt(array[i].value)/100)*2*Math.PI/2;
+		    var x=Math.cos(texp)*(r/2)+r+300;
+		     var y=Math.sin(texp)*(r/2)+r+50;
+		ctr.beginPath();
+		ctr.fillStyle=mn[i];
+		ctr.moveTo(500,250);
+		ctr.arc(500,250,200,s,e);
+			
+		ctr.fill();
+		 ctr.font="18px Arial";
+		  ctr.textAlign="center";
+		ctr.strokeText(array[i].getAttribute("title"),x,y)
+				
+		   temp=e;
+		  
+		 
+		  
+			
+				
+	}
+	}
+	
+	
+
+	
+
+
+</script>
+<body>
+	<div>Java占用率: 	<input type="text" title="Java占用率" value="40%" name="product" id="input1">PHP占用率:	<input type="text" title="PHP占用率" name="product" value="30%" id="input2">C++占用率: 	<input type="text" name="product" title="C++占用率:" value="20%" id="input3">其他: 	<input type="text"  name="product"title="其他:" value="10%" id="input4">
+	<input type="button" title="blue" value="绘图" onclick="doStart()"></div>
+	<canvas id="c1" width="1000px" height="500px"></canvas>
+</body>
+</html>

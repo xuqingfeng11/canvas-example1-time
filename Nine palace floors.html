@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#c1{
+		border:1px solid #ccc;
+	}
+		</style>
+</head>
+<script>
+var arr=[
+		[0,1,0,1,0],
+		[1,0,1,0,1],	
+		[0,1,0,1,0],
+		[1,0,1,0,1],
+		[0,1,0,1,0],
+		
+]
+window.onload=function(){
+	var ctr=document.getElementById("c1").getContext("2d");
+	
+	for(var i=0;i<arr.length;i++){
+		for(var j=0;j<arr[i].length;j++){
+			if(arr[i][j]){
+				ctr.fillStyle="blue"
+			}else{
+				ctr.fillStyle="white"
+			}
+			ctr.fillRect(0+100*j,0+100*i,100,100);
+		}
+	}
+	
+
+}
+	
+
+	
+
+
+</script>
+<body>
+	<canvas id="c1" width="500px" height="500px">
+		
+	</canvas>
+</body>
+</html>
